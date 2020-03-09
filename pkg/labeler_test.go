@@ -118,9 +118,9 @@ func TestHandleEvent(t *testing.T) {
 		},
 		TestCase{
 			payloads: []string{"create_pr", "reopen_pr"},
-			name:     "Add a label with two conditions, one not matching",
+			name:     "Test advanced functionality of regexp2",
 			config: LabelerConfig{
-				"WIP": LabelMatcher{
+				"Code Review": LabelMatcher{
 					Title: "^((?!WIP).)*$",
 				},
 			},

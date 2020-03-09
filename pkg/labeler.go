@@ -44,7 +44,7 @@ func NewTitleCondition() Condition {
 				return false, fmt.Errorf("title is not set in config")
 			}
 			log.Printf("Matching `%s` against: `%s`", matcher.Title, pr.GetTitle())
-			re := regexp2.MustCompile(matcher.Title, 0)
+			re, _ := regexp2.Compile(matcher.Title, 0)
 			isMatched, _ := re.MatchString(pr.GetTitle())
 			return isMatched, nil
 		},

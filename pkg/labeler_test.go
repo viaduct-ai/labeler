@@ -117,6 +117,17 @@ func TestHandleEvent(t *testing.T) {
 			expectedLabels: []string{},
 		},
 		TestCase{
+			payloads: []string{"create_pr", "reopen_pr"},
+			name:     "Test advanced functionality of regexp2",
+			config: LabelerConfig{
+				"Code Review": LabelMatcher{
+					Title: "^((?!WIP).)*$",
+				},
+			},
+			initialLabels:  []string{},
+			expectedLabels: []string{},
+		},
+		TestCase{
 			payloads: []string{"small_pr"},
 			name:     "Test the size_below rule",
 			config: LabelerConfig{

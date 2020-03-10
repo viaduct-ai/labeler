@@ -45,7 +45,10 @@ func NewTitleCondition() Condition {
 			}
 			log.Printf("Matching `%s` against: `%s`", matcher.Title, pr.GetTitle())
 			re, err := regexp2.Compile(matcher.Title, 0)
-			isMatched, _ := re.MatchString(pr.GetTitle())
+			if err != nil {
+				return false, fmt.Errorf("Invalid regex string %s", matcher.Title)
+			}
+			isMatched, err := re.MatchString(pr.GetTitle())
 			return isMatched, err
 		},
 	}

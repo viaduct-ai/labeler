@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 	"math"
-	"regexp"
 	"strconv"
 
+	"github.com/dlclark/regexp2"
 	gh "github.com/google/go-github/v27/github"
 )
 
@@ -44,17 +44,12 @@ func NewTitleCondition() Condition {
 				return false, fmt.Errorf("title is not set in config")
 			}
 			log.Printf("Matching `%s` against: `%s`", matcher.Title, pr.GetTitle())
-<<<<<<< HEAD
-			isMatched, _ := regexp.Match(matcher.Title, []byte(pr.GetTitle()))
-			return isMatched, nil
-=======
 			re, err := regexp2.Compile(matcher.Title, 0)
 			if err != nil {
 				return false, fmt.Errorf("Invalid regex string %s", matcher.Title)
 			}
 			isMatched, err := re.MatchString(pr.GetTitle())
 			return isMatched, err
->>>>>>> 34fee398e65099adddf3c2893bc3efbc6db8d922
 		},
 	}
 }

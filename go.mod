@@ -3,6 +3,7 @@ module github.com/srvaroa/labeler
 go 1.12
 
 require (
+	github.com/dlclark/regexp2 v1.2.0
 	github.com/go-yaml/yaml v2.1.0+incompatible
 	github.com/google/go-cmp v0.3.1
 	github.com/google/go-github/v27 v27.0.6
